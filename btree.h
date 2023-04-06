@@ -45,5 +45,6 @@ class btree {
                     return insertR(num, r->right);
             }
         }
+        return false;
     }
 };
