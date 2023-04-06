@@ -31,20 +31,21 @@ class btree {
     }
 
     bool insertR(int num, node *r) {
+        bool retVal = false;
         if (r != nullptr) {
             if (num == r->num) return false;
             if (num < r->num) {
                 if (r->left == nullptr)
                     r->left = new node(num);
                 else
-                    return insertR(num, r->left);
+                    retVal = insertR(num, r->left);
             } else {
                 if (r->right == nullptr)
                     r->right = new node(num);
                 else
-                    return insertR(num, r->right);
+                    retVal = retVal || insertR(num, r->right);
             }
         }
-        return false;
+        return retVal;
     }
 };
