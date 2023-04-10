@@ -1,3 +1,8 @@
+#ifndef BTREE_H
+#define BTREE_H
+#include <fstream>
+#include <string>
+
 struct node
 {
     int num;
@@ -70,7 +75,7 @@ public:
         return retVal;
     }
 
-    void preorder(node *r, string &s, bool direction)
+    void preorder(node *r, string &s, bool direction, ofstream &ofs)
     {
         if (r == nullptr)
             return;
@@ -81,10 +86,12 @@ public:
 
             r->path = s;
 
-            cout << s << "] " << to_string(r->num) << endl;
-            preorder(r->left, s, true);
+            ofs << s << "] " << to_string(r->num) << endl;
+            preorder(r->left, s, true, ofs);
             s = r->path;
-            preorder(r->right, s, false);
+            preorder(r->right, s, false, ofs);
         }
     }
 };
+
+#endif

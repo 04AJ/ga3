@@ -3,23 +3,28 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-
 #include "ArgumentManager.h"
 #include "btree.h"
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    btree tree = btree();
-    tree.insert(9);
-    tree.insert(6);
-    tree.insert(3);
-    tree.insert(2);
-    tree.insert(5);
-    tree.insert(4);
-    tree.insert(1);
+    ArgumentManager am(argc, argv);
 
+    string input = am.get("input");
+    string output = am.get("output");
+
+    // ifstream ifs(input);
+    // ofstream ofs(output);
+
+    ifstream ifs("input1.txt");
+    ofstream ofs("output1.txt");
+
+    btree tree = btree();
+
+    // Ex of how to call preorder function - note bool value can be set true or false.
     string temp = "[x";
-    tree.preorder(tree.getRoot(), temp, false);
+    tree.preorder(tree.getRoot(), temp, false, ofs);
+
     return 0;
 }
