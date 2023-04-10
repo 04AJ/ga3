@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <vector>
 #include <cstdlib>
-
 #include "ArgumentManager.h"
 #include "btree.h"
 using namespace std;
@@ -13,23 +12,34 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     ArgumentManager am(argc, argv);
-    ifstream fin(am.get("input"));
-    ofstream fout(am.get("output"));
+    string input = am.get("input");
+    string output = am.get("output");
+
+    // ifstream ifs(input);
+    // ofstream ofs(output);
+
+    ifstream ifs("input1.txt");
+    ofstream ofs("output1.txt");
+
+    btree tree = btree();
 
     string str_num;
     int num;
     vector<int> array;
 
-    while (fin >> str_num)
+    while (ifs >> str_num)
     {
         num = stoi(str_num);
         array.push_back(num);
     }
-    btree tree;
     for (int i = 0; i < array.size(); i++)
     {
         tree.insert(array[i]);
     }
+
+    // Ex of how to call preorder function - note bool value can be set true or false.
+    string temp = "[x";
+    tree.preorder(tree.getRoot(), temp, false, ofs);
 
     return 0;
 }
