@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
         num = stoi(str_num);
         array.push_back(num);
     }
-
+    btree tree;
     for (int i = 0; i < array.size(); i++)
     {
         tree.insert(array[i]);

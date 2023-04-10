@@ -1,9 +1,11 @@
-struct node {
+struct node
+{
     int num;
     node *left;
     node *right;
 
-    node() {
+    node()
+    {
         num = 0;
         left = nullptr;
         right = nullptr;
@@ -12,17 +14,20 @@ struct node {
     node(int n) { num = n; }
 };
 
-class btree {
-   private:
+class btree
+{
+private:
     node *root;
 
-   public:
+public:
     btree() { root = nullptr; }
 
     bool empty() { return root == nullptr; }
 
-    bool insert(int num) {
-        if (empty()) {
+    bool insert(int num)
+    {
+        if (empty())
+        {
             node *tmp = new node(num);
             root = tmp;
             return true;
@@ -30,16 +35,22 @@ class btree {
         return insertR(num, root);
     }
 
-    bool insertR(int num, node *r) {
+    bool insertR(int num, node *r)
+    {
         bool retVal = false;
-        if (r != nullptr) {
-            if (num == r->num) return false;
-            if (num < r->num) {
+        if (r != nullptr)
+        {
+            if (num == r->num)
+                return false;
+            if (num < r->num)
+            {
                 if (r->left == nullptr)
                     r->left = new node(num);
                 else
                     retVal = insertR(num, r->left);
-            } else {
+            }
+            else
+            {
                 if (r->right == nullptr)
                     r->right = new node(num);
                 else
